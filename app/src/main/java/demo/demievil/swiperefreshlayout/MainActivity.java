@@ -1,10 +1,13 @@
-package com.demievil.swiperefreshlayout;
+package demo.demievil.swiperefreshlayout;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.demievil.swiprefreshlayout.RefreshLayout;
+
 import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
@@ -17,11 +20,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.demievil.swiperefreshlayout.R.layout.activity_main);
 
-        mRefreshLayout = (RefreshLayout) findViewById(R.id.swipe_container);
-        mListView = (ListView) findViewById(R.id.list);
-        mRefreshLayout.setFooterView(this, mListView, R.layout.listview_footer);
+        mRefreshLayout = (RefreshLayout) findViewById(com.demievil.swiperefreshlayout.R.id.swipe_container);
+        mListView = (ListView) findViewById(com.demievil.swiperefreshlayout.R.id.list);
+        mRefreshLayout.setFooterView(this, mListView, com.demievil.swiperefreshlayout.R.layout.listview_footer);
 
         values = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
@@ -30,10 +33,10 @@ public class MainActivity extends ActionBarActivity {
         mArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, values);
         mListView.setAdapter(mArrayAdapter);
 
-        mRefreshLayout.setColorSchemeResources(R.color.google_blue,
-                R.color.google_green,
-                R.color.google_red,
-                R.color.google_yellow);
+        mRefreshLayout.setColorSchemeResources(com.demievil.swiperefreshlayout.R.color.google_blue,
+                com.demievil.swiperefreshlayout.R.color.google_green,
+                com.demievil.swiperefreshlayout.R.color.google_red,
+                com.demievil.swiperefreshlayout.R.color.google_yellow);
 
         mRefreshLayout.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override

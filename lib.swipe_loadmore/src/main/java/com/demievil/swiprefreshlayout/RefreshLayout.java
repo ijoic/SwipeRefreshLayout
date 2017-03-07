@@ -1,4 +1,4 @@
-package com.demievil.swiperefreshlayout;
+package com.demievil.swiprefreshlayout;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
