@@ -1,4 +1,4 @@
-package com.demievil.swiprefreshlayout;
+package com.demievil.swiperefreshlayout;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,7 +34,9 @@ public class RefreshLayout extends SwipeRefreshLayout {
     public void setFooterView(Context context, ListView mListView, int layoutId) {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mListViewFooter = LayoutInflater.from(context).inflate(layoutId, null, false);
+        mListView.addFooterView(mListViewFooter);
         mListView.setFooterDividersEnabled(false);
+        mListViewFooter.setVisibility(View.GONE);
         this.mListView = mListView;
     }
 
@@ -72,7 +74,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         if (mListView.getCount() > 0) {
             if (mListView.getLastVisiblePosition() == mListView.getAdapter().getCount() - 1 &&
                     mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight()
-                    && mListView.getHeight() == getHeight()) {
+                    && (mListView.getFirstVisiblePosition() != 0 || mListView.getChildAt(0).getTop() != 0)) {
                 return true;
             }
         }
