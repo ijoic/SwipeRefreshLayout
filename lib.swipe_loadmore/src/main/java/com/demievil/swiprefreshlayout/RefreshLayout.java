@@ -33,9 +33,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
     //set the footer of the ListView with a ProgressBar in it
     public void setFooterView(Context context, ListView mListView, int layoutId) {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mListViewFooter = LayoutInflater.from(context).inflate(layoutId, null,
-                false);
-        mListView.addFooterView(mListViewFooter);
+        mListViewFooter = LayoutInflater.from(context).inflate(layoutId, null, false);
         mListView.setFooterDividersEnabled(false);
         this.mListView = mListView;
     }
@@ -73,7 +71,8 @@ public class RefreshLayout extends SwipeRefreshLayout {
     private boolean isBottom() {
         if (mListView.getCount() > 0) {
             if (mListView.getLastVisiblePosition() == mListView.getAdapter().getCount() - 1 &&
-                    mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight()) {
+                    mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight()
+                    && mListView.getHeight() == getHeight()) {
                 return true;
             }
         }
@@ -94,13 +93,14 @@ public class RefreshLayout extends SwipeRefreshLayout {
     public void setLoading(boolean loading) {
         isLoading = loading;
         if (isLoading) {
-            if (isRefreshing()) setRefreshing(false);
+            if (isRefreshing()) {
+                setRefreshing(false);
+            }
             if (mListView.getFooterViewsCount() == 0) {
                 mListView.addFooterView(mListViewFooter);
                 mListView.setSelection(mListView.getAdapter().getCount() - 1);
             } else {
                 mListViewFooter.setVisibility(VISIBLE);
-                //mListView.addFooterView(mListViewFooter);
             }
         } else {
             if (mListView.getAdapter() instanceof HeaderViewListAdapter) {
@@ -117,7 +117,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         mOnLoadListener = loadListener;
     }
 
-    public static interface OnLoadListener {
-        public void onLoad();
+    public interface OnLoadListener {
+        void onLoad();
     }
 }
