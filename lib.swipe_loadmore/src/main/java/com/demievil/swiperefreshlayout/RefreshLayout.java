@@ -46,6 +46,7 @@ public class RefreshLayout extends SwipeRefreshLayout {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mYDown = (int) event.getRawY();
+                mLastY = mYDown;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -101,15 +102,13 @@ public class RefreshLayout extends SwipeRefreshLayout {
             if (mListView.getFooterViewsCount() == 0) {
                 mListView.addFooterView(mListViewFooter);
                 mListView.setSelection(mListView.getAdapter().getCount() - 1);
-            } else {
-                mListViewFooter.setVisibility(VISIBLE);
             }
+            mListViewFooter.setVisibility(VISIBLE);
         } else {
             if (mListView.getAdapter() instanceof HeaderViewListAdapter) {
                 mListView.removeFooterView(mListViewFooter);
-            } else {
-                mListViewFooter.setVisibility(View.GONE);
             }
+            mListViewFooter.setVisibility(View.GONE);
             mYDown = 0;
             mLastY = 0;
         }

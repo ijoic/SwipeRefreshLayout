@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
         mRefreshLayout.setFooterView(this, mListView, R.layout.listview_footer);
 
         values = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 15; i++) {
             values.add("Item " + i);
         }
         mArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, values);
